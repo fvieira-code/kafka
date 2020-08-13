@@ -1,0 +1,26 @@
+Transcrição
+[00:00] Com isso, a gente chega no final desse primeiro curso sobre Kafka, repara quanta coisa e o quão longe a gente chegou. A gente terminou o projeto com diversos micro serviços, pequenos, cada um pode ter as dependências que você quiser.
+
+[00:15] Então, se algum deles precisar de acesso a banco, a um banco local específico, maravilha, se o outro precisa de acesso ao cloud para fazer alguma outra coisa, maravilha. Se um terceiro precisar fazer push notification para o celular, maravilha.
+
+[00:27] Cada um com as suas próprias dependências, no seu próprio pom, então você pode criar os seus próprios projetos. Claro, aqui eu fiz com o maven, seja a ferramenta na linguagem que você quiser e o que a gente discutiu bastante durante o curso foi: comunicação entre esses serviços.
+
+[00:42] Como é que eu faço para que um serviço fique escutando e a gente criou três serviços que ficam escutando, o e-mail, o fraud detector e o log. E, como é que eu faço para enviar mensagens para esse mensagedor que faz um monte de coisa, que é o string, que é o fluxo de string de mensagem, que é o Kafka.
+
+[00:58] E para isso, a gente usou o nosso service new order, ele via 10 mensagens, no nosso caso agora, essas 10 mensagens chegam em algum deles, no nosso caso, quem está de olho nisso é o log e o fraud detector.
+
+[01:11] O log só loga essas 10 mensagens, o fraud detector analisa essas 10 mensagens e verifica se te fraude ou não. Claro, a gente fez isso de uma maneira fake, porque não era o nosso foco ficar entrando em Machine Learning.
+
+[01:23] A mesma coisa com as outras 10 mensagens que o new order envia, ele envia 10 mensagens que é um e-mail de tipo: “A sua compra está sendo processada”, que vai ser enviado, então ele envia uma mensagem, que o service e-mail escuta.
+
+[01:34] E o service log, loga essa mensagem também. Claro, a partir daqui, você pode criar mais serviços que estão escutando e enviando mensagens e começar a lidar com situações cada vez mais complexas.
+
+[01:48] Nesse instante, a gente tem o service new order enviando várias mensagens, a gente tem vários grupos de consumo escutando vários subjects distintos, dois subjects distintos no nosso caso.
+
+[02:0] Então, a gente pode até ter também dois fraud detectors rodando, dentro de um consumer group ou cinco services e-mail rodando dentro de um consumer group ou 15 service log rodando dentro de um service consumer group e por aí, vai.
+
+[02:16] Então quer dizer, a gente criou um espaço bem complexo. A gente pode ter vários services new orders enviando, vários services logs escutando, vários services fraud detector detectando, vários services e-mail enviando e-mail, pode ter vários disso.
+
+[02:28] Então, agora a gente escalou de uma maneira enorme, com várias mensagens sendo enviadas e recebidas e a gente podendo desligar e ligar o Kafka, aumentar o número de partições, mudar essas configurações.
+
+[02:38] Claro, entram algumas questões e se o Kafka cai, e se não sei o que... e se não sei o que... todas as coisas mais avançadas que a gente também vai estudar nos nossos cursos de Kafka.

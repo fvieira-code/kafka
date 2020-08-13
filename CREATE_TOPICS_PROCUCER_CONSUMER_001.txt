@@ -1,0 +1,60 @@
+cd /usr/bin
+
+kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+
+clear
+
+kafka-topics --list --bootstrap-server localhost:9092
+
+kafka-console-producer --bootstrap-server localhost:9092 --topic test
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
+
+**
+kafka-console-producer --bootstrap-server localhost:9092 --topic my-replicated-topic
+====================================================================================================
+
+kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic LOJA_NOVO_PEDIDO
+
+kafka-console-producer --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
+=====================================================================================================
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic pix-empresa --from-beginning
+
+=====================================================================================================
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic ECOMMERCE_NEW_ORDER --from-beginning
+
+kafka-topics --bootstrap-server localhost:9092 --describe
+
+***** vi config/server.properties
+
+Antes: Topic: ECOMMERCE_NEW_ORDER      PartitionCount: 1       ReplicationFactor: 1    Configs: 
+
+Depois: Topic: ECOMMERCE_NEW_ORDER      PartitionCount: 3    
+
+--CLI : zookeeper
+kafka-topics --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+----Adding partitions succeeded!
+
+kafka-consumer-groups --all-groups --bootstrap-server localhost:9092 --describe 
+=================================================================================================
+
+kafka-console-consumer --bootstrap-server localhost:9092 --topic ECOMMERCE_SEND_EMAIL --from-beginning
+
+Diretório
+# mkdir data
+# mkdir data/zookeeper
+# mkdir data/kafka
+#
+
+
+ 
+
+
+
+
+
+
